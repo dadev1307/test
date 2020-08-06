@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <meta content="" name="author">
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <meta content="ie=edge" http-equiv="x-ua-compatible">
+  <link rel="stylesheet" href="css/main.css">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+</head>
+
+<body>
+  <div class="site" id="page">
+  	<div class="site__steps steps">
+  		<!-- ko foreach: stepItems -->
+  		<div class="steps__item" data-bind="class: status">
+  			<div class="steps__name" data-bind="text: name"></div>
+  			<div class="steps__number" data-bind="text: step"></div>
+  		</div>
+  		<!-- /ko -->
+  	</div>
+    <div class="site__wrapper">
+      <div class="chart-block site__chart">
+        <h2 class="chart-block__title title">График работы предприятия</h2>
+        <div class="chart-block__settings">
+          <span>Задать интервал таблицы</span>
+          <input class="chart-input" type="text" data-bind="textInput: startTime, inputmask: {value:startTime}, event: {blur: setNewTime }">
+          <span class="chart-block__settings-hyphen">—</span>
+          <input class="chart-input" type="text" data-bind="textInput: stopTime, inputmask: {value:stopTime}, event: {blur: setNewTime }">
+        </div>
+        <table class="chart-block__table table" data-bind="slideVisible: giftWrap, slideDuration:600">
+          <thead>
+            <tr>
+              <th></th>
+              <!--ko foreach: header -->
+              <th class="chart-block__time">
+                <div>
+                  <span data-bind="text: h"></span><sup data-bind="text: m"></sup>
+                </div>
+              </th>
+              <!-- /ko -->
+            </tr>
+          </thead>
+          <tbody data-bind="foreach: items">
+            <tr>
+              <td data-bind="text: name" class="table__col-days"></td>
+              <!--ko foreach: time -->
+              <td class="table__cell" data-bind="event:{click: () => $root.toggleIsActiveItem($data)}, css: {'active': isActive}, style:{width: width+'%'}">
+                <span></span>
+              </td>
+              <!-- /ko -->
+            </tr>
+          </tbody>
+        </table>
+        <div class="chart-block__btns">
+          <button data-bind="event: {click: () => setAllStatus(true)}">
+            <svg width="15" height="10" viewBox="0 0 15 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5.26573 9.68389C4.8752 9.29336 4.8752 8.6602 5.26573 8.26967L13.0858 0.44951C13.4763 0.0589853 14.1095 0.058985 14.5 0.449509C14.8905 0.840034 14.8905 1.4732 14.5 1.86372L6.67994 9.68389C6.28942 10.0744 5.65625 10.0744 5.26573 9.68389Z" fill="#12C971" />
+              <path d="M6.67994 9.68389C7.07047 9.29336 7.07041 8.6602 6.67988 8.26967L2.49995 4.08977C2.10943 3.69925 1.47626 3.69925 1.08574 4.08977C0.695216 4.4803 0.695216 5.11346 1.08574 5.50398L5.26573 9.68389C5.65625 10.0744 6.28942 10.0744 6.67994 9.68389Z" fill="#12C971" />
+            </svg>
+            Заполнить автоматически
+          </button>
+          <button data-bind="event: {click: () => setAllStatus(false)}">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1.2553 11.4588C0.864771 11.0683 0.864771 10.4351 1.2553 10.0446L10.2928 1.00566C10.6833 0.615137 11.3165 0.615138 11.707 1.00566C12.0975 1.39619 12.0975 2.02935 11.707 2.41988L2.66951 11.4588C2.27898 11.8493 1.64582 11.8493 1.2553 11.4588Z" fill="#FF238D" />
+              <path d="M11.6132 11.3963C12.0038 11.0058 12.0038 10.3726 11.6132 9.9821L2.63679 1.00566C2.24627 0.615137 1.6131 0.615138 1.22258 1.00566C0.832056 1.39619 0.832056 2.02935 1.22258 2.41988L10.199 11.3963C10.5896 11.7868 11.2227 11.7868 11.6132 11.3963Z" fill="#FF238D" />
+            </svg>
+            Очистить
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="site__controls">
+    	<button class="btn" data-bind="css:{disabled: activeStep() == 1},event:{click: () => stepTo(false)}">Назад</button>
+    	<button class="btn blue" data-bind="css:{disabled: activeStep() == stepItems().length},event:{click: () => stepTo(true)}">Далее</button>
+    </div>
+    <footer class="site__footer footer">
+      <div class="footer__wrapper">
+        <div class="footer__logo">
+          <img src="/img/footer-logo.png" alt="">
+        </div>
+        <div class="footer__copy">
+          <sup>&copy;</sup>Lookin, 2020
+        </div>
+        <div class="footer__support">
+        	<img src="/img/footer-support.png" alt="support">
+        	<a href="#">Техническая поддержка</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <script src='js/foundation.js' defer></script>
+  <script src='js/app.js' defer></script>
+</body>
+
+</html>

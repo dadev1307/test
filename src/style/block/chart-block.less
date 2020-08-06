@@ -1,0 +1,86 @@
+.chart-block {
+	&__title {
+		margin-bottom: 30px;
+	}
+	&__settings {
+		margin-bottom: 40px;
+		display: flex;
+		input {
+			margin: 0 12px;
+		}
+	}
+	&__settings-hyphen {
+		color: #8E9CBB;
+	}
+	
+	&__table {
+		margin-bottom: 30px;
+	}
+	&__time {
+		font-size: 14px;
+		position: relative;
+		height: 30px;
+		border-right: 1px solid #DFE4EF;
+		div {
+			display: flex;
+			position: absolute;
+			top: 0;
+			left: 2px;
+		}
+		sup {
+			font-size: 0.65em;
+		}
+
+		&:nth-child(2n) {
+			border: none;
+			&:after {
+				content: "";
+				position: absolute;
+				width: 1px;
+				height: 9px;
+				background-color: #DFE4EF;
+				right: -1px;
+				bottom: -1px;
+			}
+		}
+		&:nth-child(2n + 1) {
+			div {
+				display: none;
+			}
+		}
+
+		&:last-child {
+			border: none;
+			&:after {
+				content: none;
+			}
+		}
+	}
+	&__btns {
+		display: flex;
+		justify-content: flex-end;
+		button {
+			display: flex;
+			align-items: center;
+			background: none;
+			outline: none;
+			cursor: pointer;
+			border: 1px solid #D3D8DF;
+			border-radius: 20px;
+			padding: 9px 15px;
+			font-size: 12px;
+			font-weight: 500;
+			transition: all 0.2s ease-in-out;
+			svg {
+				margin-right: 7px;
+			}
+			&:first-child {
+				margin-right: 10px;
+			}
+			&:hover {
+				background-color: #0066FF;
+				color: #fff;
+			}
+		}
+	}
+}
